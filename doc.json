@@ -1,0 +1,2860 @@
+{
+    "BuyUcdnTraffic": [
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Traffic", 
+            "Desc": "所购买的流量, 单位GB"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Areacode", 
+            "Desc": "购买流量的区域, 枚举值为: cn: 国内; abroad: 海外"
+        }
+    ], 
+    "CreateVServer": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡实例ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "VServerName", 
+            "Desc": "VServer实例名称，默认为空"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Protocol", 
+            "Desc": "VServer实例的协议，枚举值为： HTTP，TCP，UDP； 默认为HTTP协议"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "FrontendPort", 
+            "Desc": "VServer后端端口，取值范围[1-65535]；默认值为80"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Method", 
+            "Desc": "VServer负载均衡模式，枚举值为： Roundrobin，轮询； Source，源地址； 默认为轮询模式"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "PersistenceType", 
+            "Desc": "VServer会话保持方式，枚举值为： None，关闭会话保持； ServerInsert，自动生成； UserDefined，用户自定义； 默认关闭会话保持。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "PersistenceInfo", 
+            "Desc": "根据PersistenceType确认； None和ServerInsert：此字段无意义； UserDefined：此字段传入自定义会话保持String"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ClientTimeout", 
+            "Desc": "空闲连接的回收时间，单位：秒； 取值范围：(0，86400]，默认值为60"
+        }
+    ], 
+    "DescribeUDBType": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }
+    ], 
+    "ReinstallUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例资源ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Password", 
+            "Desc": "如果创建UHost实例时LoginMode为Password，则必须填写，如果LoginMode为KeyPair，不需要填写 （密码格式使用BASE64编码）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ImageId", 
+            "Desc": "镜像Id，参考镜像列表，默认使用原镜像"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ReserveDisk", 
+            "Desc": "是否保留数据盘，保留：Yes，不报留：No， 默认：Yes"
+        }
+    ], 
+    "UploadPart": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "上传请求的授权签名"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Content-Length", 
+            "Desc": "请求body部分即待上传分片的长度"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Content-Type", 
+            "Desc": "上传请求body部分的类型"
+        }
+    ], 
+    "TerminateUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost资源Id"
+        }
+    ], 
+    "UpdateUcdnDomain": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DomainId", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "SourceIps.n", 
+            "Desc": "源站IP，即cdn服务器回源访问的IP地址。支持多个源站IP。 多个源站IP可以表述为：SourceIps.0=1.1.1.1， SourceIps.1=2.2.2.2"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "TestUrl", 
+            "Desc": "测试url，用于域名创建加速时的测试。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Areacodes.n", 
+            "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：”Areacodes.0=cn, Areacodes.1=aboard”， 表示同时使用国内和海外节点"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "CacheFileTypes.n", 
+            "Desc": "加速成功后需要缓存在节点服务器的静态文件类型，动态文件不支持 缓存。多个文件类型，请使用：”CacheFileTypes.0=zip, CacheFileTypes.1=txt”， 依赖于CacheTel参数"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "CacheUrls.n", 
+            "Desc": "需要缓存的文件或路径的URL。URL支持模糊匹配，不支持正则表达式。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "CacheTtl", 
+            "Desc": "缓存文件或路径需要缓存的时间。单位：秒"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "NoCacheUrl.n", 
+            "Desc": "不需要缓存的文件或路径。格式同CacheUrls"
+        }
+    ], 
+    "ReleaseVIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "VIP", 
+            "Desc": "内网VIP的IP地址"
+        }
+    ], 
+    "CreateSSL": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "SSLContent", 
+            "Desc": "SSL证书的内容"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "SSLName", 
+            "Desc": "SSL证书的名字，默认值为空"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "SSLType", 
+            "Desc": "所添加的SSL证书类型，目前只支持0：Pem格式"
+        }
+    ], 
+    "UpdateSecurityGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "防火墙资源ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Rule.n", 
+            "Desc": "防火墙规则，格式如下"
+        }
+    ], 
+    "DetachUDisk": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UDiskId", 
+            "Desc": "需要卸载的UDisk实例ID"
+        }
+    ], 
+    "CreateBucket": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "BucketName", 
+            "Desc": "待创建Bucket的名称，具有全局唯一性"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Type", 
+            "Desc": "Bucket访问类型，public或private; 默认为private"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Domain.n", 
+            "Desc": "Bucket的自定义域名"
+        }
+    ], 
+    "ReleaseBackend": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡实例的ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "BackendId", 
+            "Desc": "后端资源实例的ID(ULB后端ID，非资源自身ID)"
+        }
+    ], 
+    "ResetUHostInstancePassword": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Password", 
+            "Desc": "UHost新密码（密码格式使用BASE64编码）"
+        }
+    ], 
+    "CreateUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心, 参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ImageId", 
+            "Desc": "镜像Id, 参见 DescribeImage"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "LoginMode", 
+            "Desc": "认证方式。密码: Password，key: KeyPair（暂不支持）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Password", 
+            "Desc": "UHost密码，LoginMode为Password时此项必须（密码需使用base64进行编码）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "KeyPair", 
+            "Desc": "Keyname，LoginMode为KeyPair时此项必须（暂不支持）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "CPU", 
+            "Desc": "虚拟CPU核数， 单位：个，范围：[1,16], 最小值为1，其他值是2的倍数， 默认值: 4"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Memory", 
+            "Desc": "内存大小 , 单位：MB 范围[2048,65536]， 步长：2048， 默认值：8192"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "DiskSpace", 
+            "Desc": "数据盘大小， 单位：GB， 范围[0,1000]， 步长：10， 默认值：60"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "UHost实例名称， 默认：UHost"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "NetworkId", 
+            "Desc": "网络Id， 默认：基础网络"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "SecurityGroupId", 
+            "Desc": "防火墙Id， 默认：Web防火墙"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ChargeType", 
+            "Desc": "计费模式，枚举值为： Year，按年付费； Month，按月付费； Dynamic，按需付费（需开启权限）； Trial，试用（需开启权限） 默认为月付"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Quantity", 
+            "Desc": "购买时长，默认: 1"
+        }
+    ], 
+    "UpdateUcdnDomainStatus": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DomainId", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Status", 
+            "Desc": "域名状态，enable代表加速中，disable代表停止加速，delete代表删除加速。 （目前仅支持删除审核失败的域名）"
+        }
+    ], 
+    "DeleteVServer": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡实例的ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "VServerId", 
+            "Desc": "VServer实例的ID"
+        }
+    ], 
+    "GetMetric": [
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": ""
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "MetricName.n", 
+            "Desc": "[1, 255]"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ResourceId", 
+            "Desc": "[1, 255]"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ResourceType", 
+            "Desc": "[1, 255]"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "TimeRange", 
+            "Desc": ""
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeginTime", 
+            "Desc": ""
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "EndTime", 
+            "Desc": ""
+        }
+    ], 
+    "GetUcdnDomainLog": [
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "DomainId.n", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeginTime", 
+            "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "EndTime", 
+            "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
+        }
+    ], 
+    "CreateUDBParamGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupName", 
+            "Desc": "新配置参数组名称"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Description", 
+            "Desc": "参数组描述"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "SrcGroupId", 
+            "Desc": "源参数组id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBTypeId", 
+            "Desc": "DB类型id，mysql/mongodb按版本细分各有一个id 1：mysql-5.5，2：mysql-5.1，3：percona-5.5 4：mongodb-2.4，5：mongodb-2.6，6：mysql-5.6， 7：percona-5.6"
+        }
+    ], 
+    "DescribeImage": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ImageType", 
+            "Desc": "标准镜像：Base，行业镜像：Business， 自定义镜像：Custom，默认返回所有类型"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "OsType", 
+            "Desc": "操作系统类型：Linux， Windows 默认返回所有类型"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ImageId", 
+            "Desc": "镜像Id"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "返回数据长度，默认为20"
+        }
+    ], 
+    "AllocateVIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Count", 
+            "Desc": "申请数量，默认: 1"
+        }
+    ], 
+    "DeleteULB": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡实例的ID"
+        }
+    ], 
+    "DescribeUDBInstancePrice": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Count", 
+            "Desc": "购买DB实例数量"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ChargeType", 
+            "Desc": "Year， Month， Dynamic，Trial，默认: Dynamic 如果不指定，则一次性获取三种计费"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Quantity", 
+            "Desc": "购买DB的时长，默认值为1"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "MemoryLimit", 
+            "Desc": "内存限制(MB)，目前支持以下几档 600M/1500M/3000M/6000M/15000M/30000M"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "DiskSpace", 
+            "Desc": "磁盘空间(GB), 暂时支持20G - 500G"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Bool", 
+            "Name": "UseSSD", 
+            "Desc": "是否使用SSD，默认为false"
+        }
+    ], 
+    "DescribeBucket": [
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "BucketName", 
+            "Desc": "待获取Bucket的名称，若不提供，则获取所有Bucket"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "获取所有Bucket列表的偏移数目，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "获取所有Bucket列表的限制数目，默认为20"
+        }
+    ], 
+    "DeleteUDBInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "DB实例的id"
+        }
+    ], 
+    "DescribeUDBInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "DB实例id，如果指定则获取描述，否则为列表操作， 指定Offset/Limit"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ClassType", 
+            "Desc": "DB种类，分为SQL和NOSQL，如果是别表操作，则需要制定"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "分页显示起始偏移位置，列表操作则指定"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "分页显示数量，列表操作则指定"
+        }
+    ], 
+    "ReleaseEIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "EIPId", 
+            "Desc": "弹性IP的资源ID"
+        }
+    ], 
+    "GetEIPPrice": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "OperatorName", 
+            "Desc": "弹性IP的线路如下: 电信: Telecom 联通: Unicom 国际: International BGP: Bgp 双线: Duplet 各数据中心允许的线路参数如下： cn-east-01: Telecom, Unicom, Duplet cn-south-01: Telecom, Unicom, Duplet cn-north-01: Bgp cn-north-02: Bgp cn-north-03: Bgp hk-01: International us-west-01: International"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Bandwidth", 
+            "Desc": "弹性IP的外网带宽，单位为Mbps，范围 [0-800]；"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ChargeType", 
+            "Desc": "计费模式，枚举值为： Year，按年付费； Month，按月付费； Dynamic，按需付费(需开启权限)； 默认为获取三种价格"
+        }
+    ], 
+    "CreateUDBSlave": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "SrcId", 
+            "Desc": "master实例的DBId"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "实例名称，至少6位"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Port", 
+            "Desc": "端口号，mysql默认3306"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Bool", 
+            "Name": "UseSSD", 
+            "Desc": "是否使用SSD，默认为false"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "CouponId", 
+            "Desc": "使用的代金券id"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Bool", 
+            "Name": "IsLock", 
+            "Desc": "是否锁主库，默认为true"
+        }
+    ], 
+    "UpdateULBAttribute": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "ULB资源ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "名字（Name Tag Remark都为空则报错）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Tag", 
+            "Desc": "业务"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Remark", 
+            "Desc": "备注"
+        }
+    ], 
+    "BindSSL": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "SSLId", 
+            "Desc": "SSL证书的Id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "所绑定ULB实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "VServerId", 
+            "Desc": "所绑定VServer实例ID"
+        }
+    ], 
+    "PromoteUDBSlave": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "实例的Id"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Bool", 
+            "Name": "IsForce", 
+            "Desc": "是否强制(如果从库落后可能会禁止提升)，默认false 如果落后情况下，强制提升丢失数据"
+        }
+    ], 
+    "ClearUDBLog": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "DB实例的id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "LogType", 
+            "Desc": "日志类型，10-error（暂不支持）、20-slow（暂不支持 ）、30-binlog"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeforeTime", 
+            "Desc": "删除时间点(至少前一天)之前log，采用时间戳(秒)，默认当 前时间点前一天"
+        }
+    ], 
+    "StartUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }
+    ], 
+    "GetUHostInstancePrice": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ImageId", 
+            "Desc": "镜像Id，可通过 DescribeImage 获取镜像ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "CPU", 
+            "Desc": "虚拟CPU核心数，单位: 个，范围: [1,16]，最小值为1，其他值是2的整数倍"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Memory", 
+            "Desc": "内存容量大小，单位: MB，范围: [2048,65536]，步长: 2048"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Count", 
+            "Desc": "购买台数，范围[1,5]"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ChargeType", 
+            "Desc": "Year，Month，Dynamic，默认返回全部计费方式对应的价格"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "DiskSpace", 
+            "Desc": "数据盘大小，单位: GB，范围[0,1000]，步长: 10，默认值: 0"
+        }
+    ], 
+    "DescribeUDBBackupBlacklist": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "DB实例Id"
+        }
+    ], 
+    "DeleteBucket": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "BucketName", 
+            "Desc": "待删除Bucket的名称"
+        }
+    ], 
+    "TerminateCustomImage": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ImageId", 
+            "Desc": "自制镜像ID"
+        }
+    ], 
+    "DeletePolicyGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "内容转发策略组ID"
+        }
+    ], 
+    "CreateUcdnDomain": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Domain", 
+            "Desc": "用于加速的域名"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "SourceIps.n", 
+            "Desc": "源站IP，即cdn服务器回源访问的IP地址。支持多个源站IP。 多个源站IP可以表述为：SourceIps.0=1.1.1.1， SourceIps.1=2.2.2.2 （如果CdnType为live，则该字段非必须， 否则该字段为必须字段）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "TestUrl", 
+            "Desc": "测试url，用于域名创建加速时的测试。 （如果CdnType为live，则该字段非必须， 否则该字段为必须字段）"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Areacodes.n", 
+            "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：Areacodes.0=cn, Areacodes.1=aboard。 表示同时使用国内和海外节点"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "CdnType", 
+            "Desc": "加速域名的业务类型，web代表网站，stream代表视频，download代表 下载，Live代表直播"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ChargeType", 
+            "Desc": "计费方式。默认使用流量包计费。枚举值为：traffic：按流量包计费； bandwidth：按带宽计费；trafficused：代表流量后付费。 （目前仅支持按流量包计费）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "LiveStreamCount", 
+            "Desc": "直播流数（CdnType为live时，该字段为必须字段）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "LiveSrcType", 
+            "Desc": "直播类型，枚举值为：rtmppush；rtmppull；hls （CdnType为live时，该字段为必须字段）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "LifeSrcUrl", 
+            "Desc": "用于获取流的源URL。 （LiveSrcType为rtmppull/hls时，该字段为必须字段）"
+        }
+    ], 
+    "UpdateEIPAttribute": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "EIPId", 
+            "Desc": "EIP资源ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "名字（Name Tag Remark都为空则报错）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Tag", 
+            "Desc": "弹性IP的业务组标识"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Remark", 
+            "Desc": "弹性IP的备注信息"
+        }
+    ], 
+    "BindEIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "EIPId", 
+            "Desc": "弹性IP的资源Id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceType", 
+            "Desc": "弹性IP请求绑定的资源类型，枚举值为： uhost：云主机； vrouter：虚拟路由器； ulb，负载均衡器"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceId", 
+            "Desc": "弹性IP请求绑定的资源ID"
+        }
+    ], 
+    "UnBindEIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "EIPId", 
+            "Desc": "弹性IP的资源Id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceType", 
+            "Desc": "弹性IP请求解绑的资源类型，枚举值为： uhost：云主机； vrouter：虚拟路由器； ulb，负载均衡器"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceId", 
+            "Desc": "弹性IP请求解绑的资源ID"
+        }
+    ], 
+    "DescribeSecurityGroupResource": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "GroupId", 
+            "Desc": "防火墙ID"
+        }
+    ], 
+    "GetUcdnTraffic": [
+        {
+            "Required": false, 
+            "Type": "None", 
+            "Name": "不需要提供参数", 
+            "Desc": "None"
+        }
+    ], 
+    "DescribePolicyGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "内容转发策略组ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认值为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "数据分页值，默认为20"
+        }
+    ], 
+    "DescribeRefreshCacheTask": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DomainId", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeginTime", 
+            "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "EndTime", 
+            "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Status", 
+            "Desc": "需要获取的内容刷新的状态，枚举值：success：成功；wait：等待处理；process：正在处理；failure：失败； unkonw：未知，默认选择所有状态"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "返回数据的长度，默认20。"
+        }
+    ], 
+    "DescribeUDBBackup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "分页显示的起始偏移，列表操作则指定"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "分页显示的条目数，列表操作则指定"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "DB实例Id，如果指定，则只获取该db的备份信息"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BackupType", 
+            "Desc": "备份类型，包括0-自动，1-手动"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeginTime", 
+            "Desc": "过滤条件:起始时间(时间戳)"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "EndTime", 
+            "Desc": "过滤条件:结束时间(时间戳)"
+        }
+    ], 
+    "PrefetchDomainCache": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DomainId", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UrlList.n", 
+            "Desc": "需要刷新的多个URL列表，一次最多提交10个，必须以” http:/ /域名/”开始。目录要以”/”结尾， 如刷新目录a下所有文件，格式为： http://abc.ucloud.cn/a/ ；如刷新文件目录a下面所有img.png文件， 格式为http://abc.ucloud.cn/a/img.png。请正确提交需要刷新的域名（点播，下载只支持每次预取一个）"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Md5", 
+            "Desc": "大文件下载、点播支持文件的md5校验"
+        }
+    ], 
+    "CreateUDBInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBTypeId", 
+            "Desc": "DB类型id，mysql/mongodb按版本细分各有一个id 1：mysql-5.5，2：mysql-5.1，3：percona-5.5 4：mongodb-2.4，5：mongodb-2.6，6：mysql-5.6， 7：percona-5.6"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ChargeType", 
+            "Desc": "Year， Month， Dynamic，Trial，默认: Dynamic"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "CouponId", 
+            "Desc": "使用的代金券id"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Quantity", 
+            "Desc": "购买时长，默认值1"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "实例名称，至少6位"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "AdminUser", 
+            "Desc": "管理员帐户名，默认root"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "AdminPassword", 
+            "Desc": "管理员密码"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Port", 
+            "Desc": "端口号，mysql默认3306，mongodb默认27017"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "ParamGroupId", 
+            "Desc": "DB实例使用的配置参数组id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "MemoryLimit", 
+            "Desc": "内存限制(MB)，目前支持以下几档 600M/1500M/3000M/6000M/15000M/30000M"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "DiskSpace", 
+            "Desc": "磁盘空间(GB), 暂时支持20G - 500G"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BackupCount", 
+            "Desc": "备份策略，每周备份数量，默认7次"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BackupTime", 
+            "Desc": "备份策略，备份开始时间，单位小时计，默认3点"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BackupDuration", 
+            "Desc": "备份策略，备份时间间隔，单位小时计，默认24小时"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BackupId", 
+            "Desc": "备份id，如果指定，则表明从备份恢复实例"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Bool", 
+            "Name": "UseSSD", 
+            "Desc": "是否使用SSD，默认为false"
+        }
+    ], 
+    "DescribeEIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "EIPIds.n", 
+            "Desc": "弹性IP的资源ID如果为空，则返回当前 Region中符合条件的的所有EIP"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "数据分页值，默认为20"
+        }
+    ], 
+    "ModifyUHostInstanceRemark": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Remark", 
+            "Desc": "备注"
+        }
+    ], 
+    "UpdateVServerAttribute": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "VServerId", 
+            "Desc": "VServer实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "VServerName", 
+            "Desc": "VServer实例名称，若无此字段则不做修改"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Protocol", 
+            "Desc": "VServer协议，枚举值为: HTTP, TCP, UDP. 若无此字段则不做修改"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Method", 
+            "Desc": "VServer负载均衡算法, 枚举值为: Roundrobin, 轮询模式; Source, 源IP模式. 若无此字段则不做修改"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "PersistenceType", 
+            "Desc": "VServer会话保持模式, 枚举值为: None, 关闭会话保持; ServerInsert, 自动生成; UserDefined, 用户自定义. 若无此字段则不做修改"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "PersistenceInfo", 
+            "Desc": "根据PersistenceType确定: None或ServerInsert, 此字段无意义; UserDefined, 则此字段传入用户自定义会话保持String. 若无此字段则不做修改"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ClientTimeout", 
+            "Desc": "空闲连接的回收时间, 单位: 秒. 取值范围: (0, 86400], 默认值: 60秒. 若无此字段,则不做修改"
+        }
+    ], 
+    "DescribeSecurityGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ResourceType", 
+            "Desc": "绑定防火墙组的资源类型，如uhost"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ResourceId", 
+            "Desc": "绑定防火墙组的资源ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "GroupId", 
+            "Desc": "防火墙ID"
+        }
+    ], 
+    "UploadUDBParamGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBTypeId", 
+            "Desc": "DB类型id，mysql/mongodb按版本细分各有一个id 1：mysql-5.5，2：mysql-5.1，3：percona-5.5 4：mongodb-2.4，5：mongodb-2.6，6：mysql-5.6， 7：percona-5.6"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupName", 
+            "Desc": "配置参数组名称"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Description", 
+            "Desc": "参数组描述"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Content", 
+            "Desc": "配置内容，导入的配置内容采用base64编码。 mysql只支持[mysqld]段，如： [mysqld] back_log=102 character_set_server=utf8 ...... mongodb则不需要带段，如： auth=true maxConns=2000 ......"
+        }
+    ], 
+    "DeletePolicy": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "内容转发策略组ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "PolicyId", 
+            "Desc": "内容转发策略ID"
+        }
+    ], 
+    "GetUcdnDomainTraffic": [
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "DomainId.n", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Areacode.n", 
+            "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：”Areacodes.0=cn, Areacodes.1=aboard”， 表示同时使用国内和海外节点"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeginTime", 
+            "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "EndTime", 
+            "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
+        }
+    ], 
+    "ModifyEIPWeight": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "EIPId", 
+            "Desc": "弹性IP的资源ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Weight", 
+            "Desc": "外网出口权重，范围[0-100]"
+        }
+    ], 
+    "GetUcdnDomainPrefetchEnale": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DomainId", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }
+    ], 
+    "GrantSecurityGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "防火墙资源ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceType", 
+            "Desc": "所应用资源类型，如UHost"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceId", 
+            "Desc": "所应用资源ID"
+        }
+    ], 
+    "DescribeUDBInstanceState": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "实例的Id"
+        }
+    ], 
+    "RebootUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }
+    ], 
+    "AttachUDisk": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UDiskId", 
+            "Desc": "需要挂载的UDisk实例ID"
+        }
+    ], 
+    "RefreshUcdnDomainCache": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DomainId", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Type", 
+            "Desc": "刷新类型，file代表文件刷新，dir代表路径刷新"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UrlList.n", 
+            "Desc": "刷新多个URL列表时，一次最多提交30个。必须以” http:/ /域名/”开始。目录要以”/”结尾， 如刷新目录a下所有文件，格式为： http://abc.ucloud.cn/a/ ；如刷新文件目录a下面所有img.png文件， 格式为http://abc.ucloud.cn/a/img.png。请正确提交需要刷新的域名"
+        }
+    ], 
+    "UpdateUDBParamGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "GroupId", 
+            "Desc": "配置参数组id，使用DescribeUDBParamGroup获得"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Key", 
+            "Desc": "参数名称"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Value", 
+            "Desc": "参数值"
+        }
+    ], 
+    "FinishMultipartUpload": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "上传请求的授权签名"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Content-Length", 
+            "Desc": "请求body部分的长度"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Content-Type", 
+            "Desc": "请求body部分的类型"
+        }
+    ], 
+    "PutFile": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "上传请求的授权签名"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Content-Length", 
+            "Desc": "请求body部分即待上传文件的长度"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Content-Type", 
+            "Desc": "请求body部分即待上传文件的类型"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Content-MD5", 
+            "Desc": "文件内容的MD5摘要"
+        }
+    ], 
+    "DeleteFile": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "删除请求的授权签名"
+        }
+    ], 
+    "DescribeUDBParamGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "GroupId", 
+            "Desc": "参数组id，如果指定则获取描述，否则是列表操作，需要 指定Offset/Limit"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "分页显示的起始偏移，列表操作则指定"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "分页显示的条目数，列表操作则指定"
+        }
+    ], 
+    "ModifyEIPBandwidth": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "EIPId", 
+            "Desc": "弹性IP的资源ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Bandwidth", 
+            "Desc": "弹性IP的外网带宽，单位为Mbps，范围 [0-800]"
+        }
+    ], 
+    "UploadHit": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "上传请求的授权签名"
+        }
+    ], 
+    "CreateUHostInstanceSnapshot": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }
+    ], 
+    "DescribeUcdnDomain": [
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "DomainIds.n", 
+            "Desc": "域名ID，创建加速域名时生成。默认获取账户下所有域名。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "OffSet", 
+            "Desc": "返回数据的偏移量，默认0。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Limit", 
+            "Desc": "返回数据的长度，默认20。"
+        }
+    ], 
+    "ModifyUHostInstanceTag": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Tag", 
+            "Desc": "业务组名称"
+        }
+    ], 
+    "CreateSecurityGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupName", 
+            "Desc": "防火墙组名称"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Description", 
+            "Desc": "防火墙组描述"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Rule.n", 
+            "Desc": "防火墙规则，格式如下："
+        }
+    ], 
+    "StopUDBInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "实例的Id"
+        }
+    ], 
+    "DescribeUHostInstanceSnapshot": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }
+    ], 
+    "GetUcdnDomainBandwidths": [
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "DomainId.n", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Areacode.n", 
+            "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：”Areacodes.0=cn, Areacodes.1=aboard”， 表示同时使用国内和海外节点"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeginTime", 
+            "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "EndTime", 
+            "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Daily", 
+            "Desc": "是否按天展示带宽峰值，枚举值：0：否；1：是；默认为0"
+        }
+    ], 
+    "DescribePrefetchCacheTask": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DomainId", 
+            "Desc": "域名ID，创建加速域名时生成。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "BeginTime", 
+            "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "EndTime", 
+            "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Status", 
+            "Desc": "需要获取的内容刷新的状态，枚举值：success：成功；wait：等待处理；process：正在处理；failure：失败； unkonw：未知，默认选择所有状态"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "返回数据的长度，默认20。"
+        }
+    ], 
+    "DescribeUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "UHostIds.n", 
+            "Desc": "UHost主机的资源ID，如果为空，则返回当前 Region 所有符合条件的UHost实例"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "返回数据长度，默认为20"
+        }
+    ], 
+    "DeleteUDBParamGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "GroupId", 
+            "Desc": "参数组id"
+        }
+    ], 
+    "StopUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }
+    ], 
+    "RestartUDBInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "实例的Id"
+        }
+    ], 
+    "CreatePolicy": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "内容转发策略组ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Match", 
+            "Desc": "内容转发匹配字段"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "需要添加内容转发策略的负载均衡实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "VServerId", 
+            "Desc": "需要添加内容转发策略的VServer实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Array", 
+            "Name": "BackendId.n", 
+            "Desc": "内容转发策略应用的后端资源实例的ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Type", 
+            "Desc": "内容转发匹配字段的类型，当前仅支持按域名转发。枚举值：Domain"
+        }
+    ], 
+    "InitiateMultipartUpload": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "上传请求的授权签名"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Content-Length", 
+            "Desc": "请求body部分的长度"
+        }
+    ], 
+    "CreateCustomImage": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ImageName", 
+            "Desc": "镜像名称"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ImageDescription", 
+            "Desc": "镜像描述"
+        }
+    ], 
+    "ModifyUDBInstanceName": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "实例的Id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "实例的新名字"
+        }
+    ], 
+    "BackupUDBInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "DB实例Id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "BackupName", 
+            "Desc": "备份名称"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Bool", 
+            "Name": "UseBlacklist", 
+            "Desc": "是否使用黑名单备份，默认false"
+        }
+    ], 
+    "CreateULB": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ULBName", 
+            "Desc": "负载均衡的名字，默认值为空"
+        }
+    ], 
+    "GetFile": [
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "下载请求的授权签名"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Range", 
+            "Desc": "分片下载的文件范围"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "If-Modified-Since", 
+            "Desc": "只返回从某时修改过的文件，否则返回304(not modified)"
+        }
+    ], 
+    "ResizeUHostInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "CPU", 
+            "Desc": "虚拟CPU核数，单位：个，范围：[1,16]，最小值为1，其他值是2的倍数，默认值为当前实例的CPU核数"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Memory", 
+            "Desc": "内存大小，单位：MB，范围[2048,65536]，步长：2048，默认值为当前实例的内存大小"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "DiskSpace", 
+            "Desc": "数据盘大小，单位：GB，范围[10,1000]，步长：10，默认值为当前实例的数据盘大小，数据盘不支持缩容，因此不允许输入比当前实例数据盘大小的值"
+        }
+    ], 
+    "GetUHostInstanceVncInfo": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }
+    ], 
+    "DescribeULB": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "数据分页值，默认为20"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡实例的Id。 若指定则返回指定的负载均衡实例的信息； 若不指定则返回当前数据中心中所有的负载均衡实例的信息"
+        }
+    ], 
+    "AllocateEIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "OperatorName", 
+            "Desc": "弹性IP的线路如下: 电信: Telecom 联通: Unicom 国际: International BGP: Bgp 双线: Duplet 各数据中心允许的线路参数如下： cn-east-01: Telecom, Unicom, Duplet cn-south-01: Telecom, Unicom, Duplet cn-north-01: Bgp cn-north-02: Bgp cn-north-03: Bgp hk-01: International us-west-01: International"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Bandwidth", 
+            "Desc": "弹性IP的外网带宽，单位为Mbps，范围 [0-800]； 共享带宽模式必须指定0M带宽，非共享带宽模式必须指定非0M带宽"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "ChargeType", 
+            "Desc": "计费模式，枚举值为： Year，按年付费； Month，按月付费； Dynamic，按需付费(需开启权限)； Trial，试用(需开启权限) 默认为按月付费"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Quantity", 
+            "Desc": "购买时长，默认: 1"
+        }
+    ], 
+    "UpdateBackendAttribute": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡资源ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "BackendId", 
+            "Desc": "后端资源实例的ID(ULB后端ID，非资源自身ID)"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Port", 
+            "Desc": "后端资源服务端口，取值范围[1-65535]"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Enabled", 
+            "Desc": "后端实例状态开关，枚举值： 1：启动； 0：禁用 若无此字段，则不做修改"
+        }
+    ], 
+    "CreateUDBReplicationInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "SrcId", 
+            "Desc": "primary节点的DBId"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "实例名称，至少6位"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Port", 
+            "Desc": "端口号，默认27017"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Bool", 
+            "Name": "IsArbiter", 
+            "Desc": "是否是仲裁节点，默认false，仲裁节点按最小机型创建"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "CouponId", 
+            "Desc": "使用的代金券id"
+        }
+    ], 
+    "UpdatePolicyGroupAttribute": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "内容转发策略组ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "GroupName", 
+            "Desc": "修改策略转发组名称"
+        }
+    ], 
+    "DeleteSecurityGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "GroupId", 
+            "Desc": "防火墙资源ID"
+        }
+    ], 
+    "EditUDBBackupBlacklist": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "DB实例Id"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Blacklist", 
+            "Desc": "黑名单，规范示例abc.%;user.%;city.address;"
+        }
+    ], 
+    "DescribeVIP": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }
+    ], 
+    "DeleteUDBBackup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "BackupId", 
+            "Desc": "备份id，可通过DescribeUDBBackup获得"
+        }
+    ], 
+    "ModifyUHostInstanceName": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "UHostId", 
+            "Desc": "UHost实例ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Name", 
+            "Desc": "UHost实例名称"
+        }
+    ], 
+    "DeleteSSL": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "SSLId", 
+            "Desc": "SSL证书的ID"
+        }
+    ], 
+    "CreatePolicyGroup": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "GroupName", 
+            "Desc": "内容转发策略组名称，默认为空"
+        }
+    ], 
+    "PostFile": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Content-Type", 
+            "Desc": "待上传文件的类型,必须为multipart/form-data"
+        }, 
+        {
+            "Required": true, 
+            "Type": "Integer", 
+            "Name": "Content-Length", 
+            "Desc": "请求body的长度"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Content-MD5", 
+            "Desc": "文件内容的MD5摘要"
+        }
+    ], 
+    "AbortMultipartUpload": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Authorization", 
+            "Desc": "上传请求的授权签名"
+        }
+    ], 
+    "AllocateBackend": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ULBId", 
+            "Desc": "负载均衡实例的ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "VServerId", 
+            "Desc": "VServer实例的ID"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceType", 
+            "Desc": "所添加的后端资源的类型，如UHost"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "ResourceId", 
+            "Desc": "所添加的后端资源的资源ID"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Port", 
+            "Desc": "所添加的后端资源服务端口，取值范围[1-65535]，默认80"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Enabled", 
+            "Desc": "后端实例状态开关，枚举值： 1：启动； 0：禁用 默认为启用"
+        }
+    ], 
+    "GetFileList": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "BucketName", 
+            "Desc": "Bucket名称"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Offset", 
+            "Desc": "获取Bucket中文件列表的偏移数目，默认为0"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Limit", 
+            "Desc": "获取Bucket中文件列表的限制数目，默认为20"
+        }
+    ], 
+    "DescribeSSL": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，参见 数据中心列表"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "SSLId", 
+            "Desc": "SSL证书的Id"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Limit", 
+            "Desc": "数据分页值，默认为20"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "Offset", 
+            "Desc": "数据偏移量，默认值为0"
+        }
+    ], 
+    "UpdateBucket": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "BucketName", 
+            "Desc": "待修改Bucket的名称"
+        }, 
+        {
+            "Required": false, 
+            "Type": "String", 
+            "Name": "Type", 
+            "Desc": "Bucket访问类型"
+        }
+    ], 
+    "StartUDBInstance": [
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "Region", 
+            "Desc": "数据中心，请参见数据中心RegionList"
+        }, 
+        {
+            "Required": false, 
+            "Type": "Integer", 
+            "Name": "ProjectId", 
+            "Desc": "项目编号"
+        }, 
+        {
+            "Required": true, 
+            "Type": "String", 
+            "Name": "DBId", 
+            "Desc": "实例的Id"
+        }
+    ]
+}
