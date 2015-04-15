@@ -5,4 +5,5 @@ build
 dist
 ucloud-cli.egg-info/
 .DS_Store
+enums.json
 
