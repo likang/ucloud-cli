@@ -8,6 +8,8 @@ http://docs.ucloud.cn/api/apilist.html
 import json
 from pyquery import PyQuery
 
+regions = ['cn-north-01', 'cn-north-02', 'cn-north-03', 'cn-east-01', 'cn-south-01', 'hk-01', 'us-west-01']
+
 api_urls = [PyQuery(li)('a').attr('href')
             for li in PyQuery('http://docs.ucloud.cn/api/apilist.html')('.compound > ul ul li')]
 
@@ -19,17 +21,21 @@ for url in api_urls:
     api = doc('.body > .section h1:first')
     PyQuery(api)('a').remove()
 
-    params = []
-    for tr in doc('[valign="top"]:first tr'):
+    params = {}
+    has_length_col = 'length' in doc('.docutils:first thead').text().lower()
+    for tr in doc('.docutils:first tbody tr'):
         tds = PyQuery(tr)('td')
-        params.append({
-            'Name': PyQuery(tds[0]).text().replace('\n', ' '),
+        if has_length_col:
+            del tds[2]
+        params[PyQuery(tds[0]).text().replace('\n', ' ')] = {
             'Type': PyQuery(tds[1]).text().replace('\n', ' '),
             'Desc': PyQuery(tds[2]).text().replace('\n', ' '),
             'Required': PyQuery(tds[3]).text().replace('\n', ' ').lower() == 'yes',
-        })
+        }
 
     api_list[api.text()] = params
+
+api_list['UpdateSecurityGroup']['Rule.n']['Desc'] += ' Proto|Dst_port|Src_ip|Action|Priority'
 
 
 with open('doc.json', 'w') as f:
