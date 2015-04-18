@@ -3,11 +3,13 @@
         "Areacode": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "购买流量的区域, 枚举值为: cn: 国内; abroad: 海外"
         }, 
         "Traffic": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 0, 
             "Desc": "所购买的流量, 单位GB"
         }
     }, 
@@ -15,46 +17,55 @@
         "PersistenceType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 6, 
             "Desc": "VServer会话保持方式，枚举值为： None，关闭会话保持； ServerInsert，自动生成； UserDefined，用户自定义； 默认关闭会话保持。"
         }, 
         "Protocol": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "VServer实例的协议，枚举值为： HTTP，TCP，UDP； 默认为HTTP协议"
         }, 
         "PersistenceInfo": {
             "Required": false, 
             "Type": "String", 
+            "Order": 7, 
             "Desc": "根据PersistenceType确认； None和ServerInsert：此字段无意义； UserDefined：此字段传入自定义会话保持String"
         }, 
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡实例ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "VServerName": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "VServer实例名称，默认为空"
         }, 
         "FrontendPort": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "VServer后端端口，取值范围[1-65535]；默认值为80"
         }, 
         "ClientTimeout": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 8, 
             "Desc": "空闲连接的回收时间，单位：秒； 取值范围：(0，86400]，默认值为60"
         }, 
         "Method": {
             "Required": false, 
             "Type": "String", 
+            "Order": 5, 
             "Desc": "VServer负载均衡模式，枚举值为： Roundrobin，轮询； Source，源地址； 默认为轮询模式"
         }
     }, 
@@ -62,6 +73,7 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }
     }, 
@@ -69,26 +81,31 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例资源ID"
         }, 
         "ReserveDisk": {
             "Required": false, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "是否保留数据盘，保留：Yes，不报留：No， 默认：Yes"
         }, 
         "Password": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "如果创建UHost实例时LoginMode为Password，则必须填写，如果LoginMode为KeyPair，不需要填写 （密码格式使用BASE64编码）"
         }, 
         "ImageId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "镜像Id，参考镜像列表，默认使用原镜像"
         }
     }, 
@@ -96,16 +113,19 @@
         "Content-Length": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "请求body部分即待上传分片的长度"
         }, 
         "Content-Type": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "上传请求body部分的类型"
         }, 
         "Authorization": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "上传请求的授权签名"
         }
     }, 
@@ -113,11 +133,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost资源Id"
         }
     }, 
@@ -125,41 +147,49 @@
         "Areacodes.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：”Areacodes.0=cn, Areacodes.1=aboard”， 表示同时使用国内和海外节点"
         }, 
         "DomainId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "NoCacheUrl.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 7, 
             "Desc": "不需要缓存的文件或路径。格式同CacheUrls"
         }, 
         "CacheTtl": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 6, 
             "Desc": "缓存文件或路径需要缓存的时间。单位：秒"
         }, 
         "SourceIp.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "源站IP，即cdn服务器回源访问的IP地址。支持多个源站IP。 多个源站IP可以表述为：SourceIps.0=1.1.1.1， SourceIps.1=2.2.2.2"
         }, 
         "TestUrl": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "测试url，用于域名创建加速时的测试。"
         }, 
         "CacheFileTypes.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "加速成功后需要缓存在节点服务器的静态文件类型，动态文件不支持 缓存。多个文件类型，请使用：”CacheFileTypes.0=zip, CacheFileTypes.1=txt”， 依赖于CacheTel参数"
         }, 
         "CacheUrls.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 5, 
             "Desc": "需要缓存的文件或路径的URL。URL支持模糊匹配，不支持正则表达式。"
         }
     }, 
@@ -167,11 +197,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "VIP": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "内网VIP的IP地址"
         }
     }, 
@@ -179,21 +211,25 @@
         "SSLName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "SSL证书的名字，默认值为空"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "SSLType": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "所添加的SSL证书类型，目前只支持0：Pem格式"
         }, 
         "SSLContent": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "SSL证书的内容"
         }
     }, 
@@ -201,16 +237,19 @@
         "Rule.n": {
             "Required": true, 
             "Type": "String", 
-            "Desc": "防火墙规则，格式如下 Proto|Dst_port|Src_ip|Action|Priority "
+            "Order": 2, 
+            "Desc": "防火墙规则，格式如下 Proto|Dst_port|Src_ip|Action|Priority"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "防火墙资源ID"
         }
     }, 
@@ -218,16 +257,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "UDiskId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "需要卸载的UDisk实例ID"
         }
     }, 
@@ -235,16 +277,19 @@
         "Domain.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "Bucket的自定义域名"
         }, 
         "Type": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "Bucket访问类型，public或private; 默认为private"
         }, 
         "BucketName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "待创建Bucket的名称，具有全局唯一性"
         }
     }, 
@@ -252,16 +297,19 @@
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡实例的ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "BackendId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "后端资源实例的ID(ULB后端ID，非资源自身ID)"
         }
     }, 
@@ -269,26 +317,31 @@
         "Daily": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "是否按天展示带宽峰值，枚举值：0：否；1：是；默认为0"
         }, 
         "DomainId.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "EndTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
         }, 
         "BeginTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
         }, 
         "Areacode.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：”Areacodes.0=cn, Areacodes.1=aboard”， 表示同时使用国内和海外节点"
         }
     }, 
@@ -296,16 +349,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "Password": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "UHost新密码（密码格式使用BASE64编码）"
         }
     }, 
@@ -313,66 +369,79 @@
         "NetworkId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 9, 
             "Desc": "网络Id， 默认：基础网络"
         }, 
         "Name": {
             "Required": false, 
             "Type": "String", 
+            "Order": 8, 
             "Desc": "UHost实例名称， 默认：UHost"
         }, 
         "DiskSpace": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 7, 
             "Desc": "数据盘大小， 单位：GB， 范围[0,1000]， 步长：10， 默认值：60"
         }, 
         "LoginMode": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "认证方式。密码: Password，key: KeyPair（暂不支持）"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心, 参见 数据中心列表"
         }, 
         "SecurityGroupId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 10, 
             "Desc": "防火墙Id， 默认：Web防火墙"
         }, 
         "ImageId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "镜像Id, 参见 DescribeImage"
         }, 
         "KeyPair": {
             "Required": false, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "Keyname，LoginMode为KeyPair时此项必须（暂不支持）"
         }, 
         "ChargeType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 11, 
             "Desc": "计费模式，枚举值为： Year，按年付费； Month，按月付费； Dynamic，按需付费（需开启权限）； Trial，试用（需开启权限） 默认为月付"
         }, 
         "Memory": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 6, 
             "Desc": "内存大小 , 单位：MB 范围[2048,65536]， 步长：2048， 默认值：8192"
         }, 
         "Password": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "UHost密码，LoginMode为Password时此项必须（密码需使用base64进行编码）"
         }, 
         "CPU": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "虚拟CPU核数， 单位：个，范围：[1,16], 最小值为1，其他值是2的倍数， 默认值: 4"
         }, 
         "Quantity": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 12, 
             "Desc": "购买时长，默认: 1"
         }
     }, 
@@ -380,11 +449,13 @@
         "Status": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "域名状态，enable代表加速中，disable代表停止加速，delete代表删除加速。 （目前仅支持删除审核失败的域名）"
         }, 
         "DomainId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }
     }, 
@@ -392,16 +463,19 @@
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡实例的ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "VServerId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "VServer实例的ID"
         }
     }, 
@@ -409,36 +483,43 @@
         "ResourceType": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "资源类型"
         }, 
         "ResourceId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "与监控指标相关的资源ID，如主机，或其他产品"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "TimeRange": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "单位秒，默认一个小时"
         }, 
         "MetricName.n": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "监控指标名称"
         }, 
         "BeginTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "unix timestamp"
         }, 
         "EndTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 6, 
             "Desc": "unix timestamp"
         }
     }, 
@@ -446,16 +527,19 @@
         "DomainId.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "EndTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
         }, 
         "BeginTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
         }
     }, 
@@ -463,31 +547,37 @@
         "DBTypeId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 5, 
             "Desc": "DB类型id，mysql/mongodb按版本细分各有一个id 1：mysql-5.5，2：mysql-5.1，3：percona-5.5 4：mongodb-2.4，5：mongodb-2.6，6：mysql-5.6， 7：percona-5.6"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "GroupName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "新配置参数组名称"
         }, 
         "SrcGroupId": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "源参数组id"
         }, 
         "Description": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "参数组描述"
         }
     }, 
@@ -495,31 +585,37 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "ImageId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "镜像Id"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "返回数据长度，默认为20"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "数据偏移量，默认为0"
         }, 
         "OsType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "操作系统类型：Linux， Windows 默认返回所有类型"
         }, 
         "ImageType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "标准镜像：Base，行业镜像：Business， 自定义镜像：Custom，默认返回所有类型"
         }
     }, 
@@ -527,11 +623,13 @@
         "Count": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "申请数量，默认: 1"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }
     }, 
@@ -539,11 +637,13 @@
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡实例的ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }
     }, 
@@ -551,36 +651,43 @@
         "Count": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "购买DB实例数量"
         }, 
         "DiskSpace": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "磁盘空间(GB), 暂时支持20G - 500G"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "UseSSD": {
             "Required": false, 
             "Type": "Bool", 
+            "Order": 6, 
             "Desc": "是否使用SSD，默认为false"
         }, 
         "MemoryLimit": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "内存限制(MB)，目前支持以下几档 600M/1500M/3000M/6000M/15000M/30000M"
         }, 
         "ChargeType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "Year， Month， Dynamic，Trial，默认: Dynamic 如果不指定，则一次性获取三种计费"
         }, 
         "Quantity": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "购买DB的时长，默认值为1"
         }
     }, 
@@ -588,16 +695,19 @@
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "获取所有Bucket列表的限制数目，默认为20"
         }, 
         "BucketName": {
             "Required": false, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "待获取Bucket的名称，若不提供，则获取所有Bucket"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "获取所有Bucket列表的偏移数目，默认为0"
         }
     }, 
@@ -605,16 +715,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB实例的id"
         }
     }, 
@@ -622,31 +735,37 @@
         "DBId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB实例id，如果指定则获取描述，否则为列表操作， 指定Offset/Limit"
         }, 
         "ClassType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "DB种类，分为SQL和NOSQL，如果是别表操作，则需要制定"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "分页显示起始偏移位置，列表操作则指定"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "分页显示数量，列表操作则指定"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }
     }, 
@@ -654,11 +773,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "EIPId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的资源ID"
         }
     }, 
@@ -666,21 +787,25 @@
         "Bandwidth": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "弹性IP的外网带宽，单位为Mbps，范围 [0-800]；"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "OperatorName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的线路如下: 电信: Telecom 联通: Unicom 国际: International BGP: Bgp 双线: Duplet 各数据中心允许的线路参数如下： cn-east-01: Telecom, Unicom, Duplet cn-south-01: Telecom, Unicom, Duplet cn-north-01: Bgp cn-north-02: Bgp cn-north-03: Bgp hk-01: International us-west-01: International"
         }, 
         "ChargeType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "计费模式，枚举值为： Year，按年付费； Month，按月付费； Dynamic，按需付费(需开启权限)； 默认为获取三种价格"
         }
     }, 
@@ -688,41 +813,49 @@
         "IsLock": {
             "Required": false, 
             "Type": "Bool", 
+            "Order": 7, 
             "Desc": "是否锁主库，默认为true"
         }, 
         "Name": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "实例名称，至少6位"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "UseSSD": {
             "Required": false, 
             "Type": "Bool", 
+            "Order": 5, 
             "Desc": "是否使用SSD，默认为false"
         }, 
         "SrcId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "master实例的DBId"
         }, 
         "Port": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "端口号，mysql默认3306"
         }, 
         "CouponId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 6, 
             "Desc": "使用的代金券id"
         }
     }, 
@@ -730,26 +863,31 @@
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "ULB资源ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Tag": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "业务"
         }, 
         "Remark": {
             "Required": false, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "备注"
         }, 
         "Name": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "名字（Name Tag Remark都为空则报错）"
         }
     }, 
@@ -757,21 +895,25 @@
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "所绑定ULB实例ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "SSLId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "SSL证书的Id"
         }, 
         "VServerId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "所绑定VServer实例ID"
         }
     }, 
@@ -779,21 +921,25 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "IsForce": {
             "Required": false, 
             "Type": "Bool", 
+            "Order": 3, 
             "Desc": "是否强制(如果从库落后可能会禁止提升)，默认false 如果落后情况下，强制提升丢失数据"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "实例的Id"
         }
     }, 
@@ -801,26 +947,31 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "BeforeTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "删除时间点(至少前一天)之前log，采用时间戳(秒)，默认当 前时间点前一天"
         }, 
         "LogType": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "日志类型，10-error（暂不支持）、20-slow（暂不支持 ）、30-binlog"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB实例的id"
         }
     }, 
@@ -828,11 +979,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }
     }, 
@@ -840,36 +993,43 @@
         "Count": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "购买台数，范围[1,5]"
         }, 
         "DiskSpace": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 6, 
             "Desc": "数据盘大小，单位: GB，范围[0,1000]，步长: 10，默认值: 0"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "ImageId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "镜像Id，可通过 DescribeImage 获取镜像ID"
         }, 
         "ChargeType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 5, 
             "Desc": "Year，Month，Dynamic，默认返回全部计费方式对应的价格"
         }, 
         "Memory": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "内存容量大小，单位: MB，范围: [2048,65536]，步长: 2048"
         }, 
         "CPU": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "虚拟CPU核心数，单位: 个，范围: [1,16]，最小值为1，其他值是2的整数倍"
         }
     }, 
@@ -877,16 +1037,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB实例Id"
         }
     }, 
@@ -894,6 +1057,7 @@
         "BucketName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "待删除Bucket的名称"
         }
     }, 
@@ -901,11 +1065,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "ImageId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "自制镜像ID"
         }
     }, 
@@ -913,11 +1079,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "内容转发策略组ID"
         }
     }, 
@@ -925,46 +1093,55 @@
         "Areacodes.n": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：Areacodes.0=cn, Areacodes.1=aboard。 表示同时使用国内和海外节点"
         }, 
         "Domain": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "用于加速的域名"
         }, 
         "CdnType": {
             "Required": true, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "加速域名的业务类型，web代表网站，stream代表视频，download代表 下载，Live代表直播"
         }, 
         "LifeSrcUrl": {
             "Required": false, 
             "Type": "String", 
+            "Order": 8, 
             "Desc": "用于获取流的源URL。 （LiveSrcType为rtmppull/hls时，该字段为必须字段）"
         }, 
         "SourceIp.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "源站IP，即cdn服务器回源访问的IP地址。支持多个源站IP。 多个源站IP可以表述为：SourceIps.0=1.1.1.1， SourceIps.1=2.2.2.2 （如果CdnType为live，则该字段非必须， 否则该字段为必须字段）"
         }, 
         "LiveSrcType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 7, 
             "Desc": "直播类型，枚举值为：rtmppush；rtmppull；hls （CdnType为live时，该字段为必须字段）"
         }, 
         "LiveStreamCount": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 6, 
             "Desc": "直播流数（CdnType为live时，该字段为必须字段）"
         }, 
         "ChargeType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 5, 
             "Desc": "计费方式。默认使用流量包计费。枚举值为：traffic：按流量包计费； bandwidth：按带宽计费；trafficused：代表流量后付费。 （目前仅支持按流量包计费）"
         }, 
         "TestUrl": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "测试url，用于域名创建加速时的测试。 （如果CdnType为live，则该字段非必须， 否则该字段为必须字段）"
         }
     }, 
@@ -972,26 +1149,31 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Tag": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "弹性IP的业务组标识"
         }, 
         "EIPId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "EIP资源ID"
         }, 
         "Name": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "名字（Name Tag Remark都为空则报错）"
         }, 
         "Remark": {
             "Required": false, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "弹性IP的备注信息"
         }
     }, 
@@ -999,21 +1181,25 @@
         "ResourceType": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "弹性IP请求绑定的资源类型，枚举值为： uhost：云主机； vrouter：虚拟路由器； ulb，负载均衡器"
         }, 
         "ResourceId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "弹性IP请求绑定的资源ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "EIPId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的资源Id"
         }
     }, 
@@ -1021,21 +1207,25 @@
         "ResourceType": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "弹性IP请求解绑的资源类型，枚举值为： uhost：云主机； vrouter：虚拟路由器； ulb，负载均衡器"
         }, 
         "ResourceId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "弹性IP请求解绑的资源ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "EIPId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的资源Id"
         }
     }, 
@@ -1043,11 +1233,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "防火墙ID"
         }
     }, 
@@ -1055,6 +1247,7 @@
         "不需要提供参数": {
             "Required": false, 
             "Type": "None", 
+            "Order": 0, 
             "Desc": "None"
         }
     }, 
@@ -1062,21 +1255,25 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "数据分页值，默认为20"
         }, 
         "GroupId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "内容转发策略组ID"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "数据偏移量，默认值为0"
         }
     }, 
@@ -1084,31 +1281,37 @@
         "Status": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "需要获取的内容刷新的状态，枚举值：success：成功；wait：等待处理；process：正在处理；failure：失败； unkonw：未知，默认选择所有状态"
         }, 
         "DomainId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "返回数据的长度，默认20。"
         }, 
         "BeginTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "数据偏移量，默认为0"
         }, 
         "EndTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
         }
     }, 
@@ -1116,41 +1319,49 @@
         "DBId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "DB实例Id，如果指定，则只获取该db的备份信息"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "Offset": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "分页显示的起始偏移，列表操作则指定"
         }, 
         "BackupType": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "备份类型，包括0-自动，1-手动"
         }, 
         "Limit": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "分页显示的条目数，列表操作则指定"
         }, 
         "BeginTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 6, 
             "Desc": "过滤条件:起始时间(时间戳)"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "EndTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 7, 
             "Desc": "过滤条件:结束时间(时间戳)"
         }
     }, 
@@ -1158,16 +1369,19 @@
         "DomainId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "UrlList.n": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "需要刷新的多个URL列表，一次最多提交10个，必须以” http:/ /域名/”开始。目录要以”/”结尾， 如刷新目录a下所有文件，格式为： http://abc.ucloud.cn/a/ ；如刷新文件目录a下面所有img.png文件， 格式为http://abc.ucloud.cn/a/img.png。请正确提交需要刷新的域名（点播，下载只支持每次预取一个）"
         }, 
         "Md5": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "大文件下载、点播支持文件的md5校验"
         }
     }, 
@@ -1175,91 +1389,109 @@
         "AdminUser": {
             "Required": false, 
             "Type": "String", 
+            "Order": 7, 
             "Desc": "管理员帐户名，默认root"
         }, 
         "UseSSD": {
             "Required": false, 
             "Type": "Bool", 
+            "Order": 17, 
             "Desc": "是否使用SSD，默认为false"
         }, 
         "BackupCount": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 13, 
             "Desc": "备份策略，每周备份数量，默认7次"
         }, 
         "DBTypeId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB类型id，mysql/mongodb按版本细分各有一个id 1：mysql-5.5，2：mysql-5.1，3：percona-5.5 4：mongodb-2.4，5：mongodb-2.6，6：mysql-5.6， 7：percona-5.6"
         }, 
         "DiskSpace": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 12, 
             "Desc": "磁盘空间(GB), 暂时支持20G - 500G"
         }, 
         "AdminPassword": {
             "Required": true, 
             "Type": "String", 
+            "Order": 8, 
             "Desc": "管理员密码"
         }, 
         "BackupDuration": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 15, 
             "Desc": "备份策略，备份时间间隔，单位小时计，默认24小时"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "ParamGroupId": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 10, 
             "Desc": "DB实例使用的配置参数组id"
         }, 
         "Port": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 9, 
             "Desc": "端口号，mysql默认3306，mongodb默认27017"
         }, 
         "MemoryLimit": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 11, 
             "Desc": "内存限制(MB)，目前支持以下几档 600M/1500M/3000M/6000M/15000M/30000M"
         }, 
         "ChargeType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "Year， Month， Dynamic，Trial，默认: Dynamic"
         }, 
         "BackupTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 14, 
             "Desc": "备份策略，备份开始时间，单位小时计，默认3点"
         }, 
         "BackupId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 16, 
             "Desc": "备份id，如果指定，则表明从备份恢复实例"
         }, 
         "Name": {
             "Required": true, 
             "Type": "String", 
+            "Order": 6, 
             "Desc": "实例名称，至少6位"
         }, 
         "CouponId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "使用的代金券id"
         }, 
         "Quantity": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "购买时长，默认值1"
         }
     }, 
@@ -1267,21 +1499,25 @@
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "数据分页值，默认为20"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "EIPIds.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的资源ID如果为空，则返回当前 Region中符合条件的的所有EIP"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "数据偏移量，默认为0"
         }
     }, 
@@ -1289,16 +1525,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "Remark": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "备注"
         }
     }, 
@@ -1306,46 +1545,55 @@
         "PersistenceType": {
             "Required": true, 
             "Type": "String", 
+            "Order": 6, 
             "Desc": "VServer会话保持模式, 枚举值为: None, 关闭会话保持; ServerInsert, 自动生成; UserDefined, 用户自定义. 若无此字段则不做修改"
         }, 
         "Protocol": {
             "Required": true, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "VServer协议，枚举值为: HTTP, TCP, UDP. 若无此字段则不做修改"
         }, 
         "PersistenceInfo": {
             "Required": true, 
             "Type": "String", 
+            "Order": 7, 
             "Desc": "根据PersistenceType确定: None或ServerInsert, 此字段无意义; UserDefined, 则此字段传入用户自定义会话保持String. 若无此字段则不做修改"
         }, 
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡实例ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "VServerId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "VServer实例ID"
         }, 
         "VServerName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "VServer实例名称，若无此字段则不做修改"
         }, 
         "ClientTimeout": {
             "Required": true, 
             "Type": "String", 
+            "Order": 8, 
             "Desc": "空闲连接的回收时间, 单位: 秒. 取值范围: (0, 86400], 默认值: 60秒. 若无此字段,则不做修改"
         }, 
         "Method": {
             "Required": true, 
             "Type": "String", 
+            "Order": 5, 
             "Desc": "VServer负载均衡算法, 枚举值为: Roundrobin, 轮询模式; Source, 源IP模式. 若无此字段则不做修改"
         }
     }, 
@@ -1353,21 +1601,25 @@
         "ResourceType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "绑定防火墙组的资源类型，如uhost"
         }, 
         "ResourceId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "绑定防火墙组的资源ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "防火墙ID"
         }
     }, 
@@ -1375,31 +1627,37 @@
         "Description": {
             "Required": true, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "参数组描述"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "Content": {
             "Required": true, 
             "Type": "String", 
+            "Order": 5, 
             "Desc": "配置内容，导入的配置内容采用base64编码。 mysql只支持[mysqld]段，如： [mysqld] back_log=102 character_set_server=utf8 ...... mongodb则不需要带段，如： auth=true maxConns=2000 ......"
         }, 
         "GroupName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "配置参数组名称"
         }, 
         "DBTypeId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB类型id，mysql/mongodb按版本细分各有一个id 1：mysql-5.5，2：mysql-5.1，3：percona-5.5 4：mongodb-2.4，5：mongodb-2.6，6：mysql-5.6， 7：percona-5.6"
         }
     }, 
@@ -1407,16 +1665,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "内容转发策略组ID"
         }, 
         "PolicyId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "内容转发策略ID"
         }
     }, 
@@ -1424,21 +1685,25 @@
         "DomainId.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "EndTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
         }, 
         "BeginTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
         }, 
         "Areacode.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "CDN加速区域，目前区域代表有：cn：国内；abroad：国外。 可选择多个区域，表述为：”Areacodes.0=cn, Areacodes.1=aboard”， 表示同时使用国内和海外节点"
         }
     }, 
@@ -1446,16 +1711,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "EIPId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的资源ID"
         }, 
         "Weight": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "外网出口权重，范围[0-100]"
         }
     }, 
@@ -1463,21 +1731,25 @@
         "ResourceType": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "所应用资源类型，如UHost"
         }, 
         "ResourceId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "所应用资源ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "防火墙资源ID"
         }
     }, 
@@ -1485,16 +1757,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "实例的Id"
         }
     }, 
@@ -1502,11 +1777,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }
     }, 
@@ -1514,16 +1791,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "UDiskId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "需要挂载的UDisk实例ID"
         }
     }, 
@@ -1531,16 +1811,19 @@
         "DomainId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "Type": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "刷新类型，file代表文件刷新，dir代表路径刷新"
         }, 
         "UrlList.n": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "刷新多个URL列表时，一次最多提交30个。必须以” http:/ /域名/”开始。目录要以”/”结尾， 如刷新目录a下所有文件，格式为： http://abc.ucloud.cn/a/ ；如刷新文件目录a下面所有img.png文件， 格式为http://abc.ucloud.cn/a/img.png。请正确提交需要刷新的域名"
         }
     }, 
@@ -1548,26 +1831,31 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "Value": {
             "Required": true, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "参数值"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "配置参数组id，使用DescribeUDBParamGroup获得"
         }, 
         "Key": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "参数名称"
         }
     }, 
@@ -1575,16 +1863,19 @@
         "Content-Length": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "请求body部分的长度"
         }, 
         "Content-Type": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "请求body部分的类型"
         }, 
         "Authorization": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "上传请求的授权签名"
         }
     }, 
@@ -1592,21 +1883,25 @@
         "Content-Length": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "请求body部分即待上传文件的长度"
         }, 
         "Content-Type": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "请求body部分即待上传文件的类型"
         }, 
         "Authorization": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "上传请求的授权签名"
         }, 
         "Content-MD5": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "文件内容的MD5摘要"
         }
     }, 
@@ -1614,6 +1909,7 @@
         "Authorization": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "删除请求的授权签名"
         }
     }, 
@@ -1621,26 +1917,31 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "分页显示的条目数，列表操作则指定"
         }, 
         "GroupId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "参数组id，如果指定则获取描述，否则是列表操作，需要 指定Offset/Limit"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "分页显示的起始偏移，列表操作则指定"
         }
     }, 
@@ -1648,16 +1949,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "EIPId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的资源ID"
         }, 
         "Bandwidth": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "弹性IP的外网带宽，单位为Mbps，范围 [0-800]"
         }
     }, 
@@ -1665,6 +1969,7 @@
         "Authorization": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "上传请求的授权签名"
         }
     }, 
@@ -1672,11 +1977,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }
     }, 
@@ -1684,16 +1991,19 @@
         "Limit": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "返回数据的长度，默认20。"
         }, 
         "DomainIds.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。默认获取账户下所有域名。"
         }, 
         "OffSet": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "返回数据的偏移量，默认0。"
         }
     }, 
@@ -1701,16 +2011,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "Tag": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "业务组名称"
         }
     }, 
@@ -1718,6 +2031,7 @@
         "DomainId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }
     }, 
@@ -1725,21 +2039,25 @@
         "Rule.n": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "防火墙规则，格式如下："
         }, 
         "GroupName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "防火墙组名称"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Description": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "防火墙组描述"
         }
     }, 
@@ -1747,16 +2065,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "实例的Id"
         }
     }, 
@@ -1764,11 +2085,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }
     }, 
@@ -1776,31 +2099,37 @@
         "Status": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "需要获取的内容刷新的状态，枚举值：success：成功；wait：等待处理；process：正在处理；failure：失败； unkonw：未知，默认选择所有状态"
         }, 
         "DomainId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "域名ID，创建加速域名时生成。"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "返回数据的长度，默认20。"
         }, 
         "BeginTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "查询的起始时间，格式为Unix Timestamp。如果有EndTime，BeginTime必须赋值。"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "数据偏移量，默认为0"
         }, 
         "EndTime": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "查询的结束时间，格式为Unix Timestamp。EndTime默认为当前时间，BeginTime默认为当前时间前一天时间。"
         }
     }, 
@@ -1808,21 +2137,25 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "返回数据长度，默认为20"
         }, 
         "UHostIds.n": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost主机的资源ID，如果为空，则返回当前 Region 所有符合条件的UHost实例"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "数据偏移量，默认为0"
         }
     }, 
@@ -1830,16 +2163,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "参数组id"
         }
     }, 
@@ -1847,11 +2183,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }
     }, 
@@ -1859,16 +2197,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "实例的Id"
         }
     }, 
@@ -1876,36 +2217,43 @@
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "需要添加内容转发策略的负载均衡实例ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "BackendId.n": {
             "Required": true, 
             "Type": "Array", 
+            "Order": 5, 
             "Desc": "内容转发策略应用的后端资源实例的ID"
         }, 
         "VServerId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "需要添加内容转发策略的VServer实例ID"
         }, 
         "Type": {
             "Required": false, 
             "Type": "String", 
+            "Order": 6, 
             "Desc": "内容转发匹配字段的类型，当前仅支持按域名转发。枚举值：Domain"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "内容转发策略组ID"
         }, 
         "Match": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "内容转发匹配字段"
         }
     }, 
@@ -1913,11 +2261,13 @@
         "Content-Length": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "请求body部分的长度"
         }, 
         "Authorization": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "上传请求的授权签名"
         }
     }, 
@@ -1925,21 +2275,25 @@
         "ImageDescription": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "镜像描述"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "ImageName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "镜像名称"
         }
     }, 
@@ -1947,21 +2301,25 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "Name": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "实例的新名字"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "实例的Id"
         }
     }, 
@@ -1969,26 +2327,31 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "BackupName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "备份名称"
         }, 
         "UseBlacklist": {
             "Required": false, 
             "Type": "Bool", 
+            "Order": 4, 
             "Desc": "是否使用黑名单备份，默认false"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB实例Id"
         }
     }, 
@@ -1996,11 +2359,13 @@
         "ULBName": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡的名字，默认值为空"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }
     }, 
@@ -2008,16 +2373,19 @@
         "Range": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "分片下载的文件范围"
         }, 
         "Authorization": {
             "Required": false, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "下载请求的授权签名"
         }, 
         "If-Modified-Since": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "只返回从某时修改过的文件，否则返回304(not modified)"
         }
     }, 
@@ -2025,26 +2393,31 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "CPU": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "虚拟CPU核数，单位：个，范围：[1,16]，最小值为1，其他值是2的倍数，默认值为当前实例的CPU核数"
         }, 
         "DiskSpace": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "数据盘大小，单位：GB，范围[10,1000]，步长：10，默认值为当前实例的数据盘大小，数据盘不支持缩容，因此不允许输入比当前实例数据盘大小的值"
         }, 
         "Memory": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "内存大小，单位：MB，范围[2048,65536]，步长：2048，默认值为当前实例的内存大小"
         }
     }, 
@@ -2052,11 +2425,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }
     }, 
@@ -2064,21 +2439,25 @@
         "ULBId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "负载均衡实例的Id。 若指定则返回指定的负载均衡实例的信息； 若不指定则返回当前数据中心中所有的负载均衡实例的信息"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "数据分页值，默认为20"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "数据偏移量，默认为0"
         }
     }, 
@@ -2086,26 +2465,31 @@
         "Bandwidth": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "弹性IP的外网带宽，单位为Mbps，范围 [0-800]； 共享带宽模式必须指定0M带宽，非共享带宽模式必须指定非0M带宽"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "OperatorName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "弹性IP的线路如下: 电信: Telecom 联通: Unicom 国际: International BGP: Bgp 双线: Duplet 各数据中心允许的线路参数如下： cn-east-01: Telecom, Unicom, Duplet cn-south-01: Telecom, Unicom, Duplet cn-north-01: Bgp cn-north-02: Bgp cn-north-03: Bgp hk-01: International us-west-01: International"
         }, 
         "ChargeType": {
             "Required": false, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "计费模式，枚举值为： Year，按年付费； Month，按月付费； Dynamic，按需付费(需开启权限)； Trial，试用(需开启权限) 默认为按月付费"
         }, 
         "Quantity": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "购买时长，默认: 1"
         }
     }, 
@@ -2113,26 +2497,31 @@
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡资源ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Enabled": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "后端实例状态开关，枚举值： 1：启动； 0：禁用 若无此字段，则不做修改"
         }, 
         "Port": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "后端资源服务端口，取值范围[1-65535]"
         }, 
         "BackendId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "后端资源实例的ID(ULB后端ID，非资源自身ID)"
         }
     }, 
@@ -2140,36 +2529,43 @@
         "Name": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "实例名称，至少6位"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "SrcId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "primary节点的DBId"
         }, 
         "IsArbiter": {
             "Required": false, 
             "Type": "Bool", 
+            "Order": 5, 
             "Desc": "是否是仲裁节点，默认false，仲裁节点按最小机型创建"
         }, 
         "Port": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 4, 
             "Desc": "端口号，默认27017"
         }, 
         "CouponId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 6, 
             "Desc": "使用的代金券id"
         }
     }, 
@@ -2177,16 +2573,19 @@
         "GroupName": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "修改策略转发组名称"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "内容转发策略组ID"
         }
     }, 
@@ -2194,11 +2593,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "GroupId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "防火墙资源ID"
         }
     }, 
@@ -2206,21 +2607,25 @@
         "Blacklist": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "黑名单，规范示例abc.%;user.%;city.address;"
         }, 
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "DB实例Id"
         }
     }, 
@@ -2228,6 +2633,7 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }
     }, 
@@ -2235,16 +2641,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "BackupId": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "备份id，可通过DescribeUDBBackup获得"
         }
     }, 
@@ -2252,16 +2661,19 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "UHostId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "UHost实例ID"
         }, 
         "Name": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "UHost实例名称"
         }
     }, 
@@ -2269,11 +2681,13 @@
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "SSLId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "SSL证书的ID"
         }
     }, 
@@ -2281,11 +2695,13 @@
         "GroupName": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "内容转发策略组名称，默认为空"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }
     }, 
@@ -2293,16 +2709,19 @@
         "Content-Length": {
             "Required": true, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "请求body的长度"
         }, 
         "Content-Type": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "待上传文件的类型,必须为multipart/form-data"
         }, 
         "Content-MD5": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "文件内容的MD5摘要"
         }
     }, 
@@ -2310,6 +2729,7 @@
         "Authorization": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "上传请求的授权签名"
         }
     }, 
@@ -2317,36 +2737,43 @@
         "ResourceType": {
             "Required": true, 
             "Type": "String", 
+            "Order": 3, 
             "Desc": "所添加的后端资源的类型，如UHost"
         }, 
         "ULBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "负载均衡实例的ID"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "Enabled": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 6, 
             "Desc": "后端实例状态开关，枚举值： 1：启动； 0：禁用 默认为启用"
         }, 
         "VServerId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "VServer实例的ID"
         }, 
         "ResourceId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 4, 
             "Desc": "所添加的后端资源的资源ID"
         }, 
         "Port": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 5, 
             "Desc": "所添加的后端资源服务端口，取值范围[1-65535]，默认80"
         }
     }, 
@@ -2354,16 +2781,19 @@
         "Limit": {
             "Required": false, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "获取Bucket中文件列表的限制数目，默认为20"
         }, 
         "BucketName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "Bucket名称"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "获取Bucket中文件列表的偏移数目，默认为0"
         }
     }, 
@@ -2371,21 +2801,25 @@
         "Limit": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 2, 
             "Desc": "数据分页值，默认为20"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，参见 数据中心列表"
         }, 
         "SSLId": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "SSL证书的Id"
         }, 
         "Offset": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 3, 
             "Desc": "数据偏移量，默认值为0"
         }
     }, 
@@ -2393,11 +2827,13 @@
         "Type": {
             "Required": false, 
             "Type": "String", 
+            "Order": 1, 
             "Desc": "Bucket访问类型"
         }, 
         "BucketName": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "待修改Bucket的名称"
         }
     }, 
@@ -2405,16 +2841,19 @@
         "ProjectId": {
             "Required": false, 
             "Type": "Integer", 
+            "Order": 1, 
             "Desc": "项目编号"
         }, 
         "Region": {
             "Required": true, 
             "Type": "String", 
+            "Order": 0, 
             "Desc": "数据中心，请参见数据中心RegionList"
         }, 
         "DBId": {
             "Required": true, 
             "Type": "String", 
+            "Order": 2, 
             "Desc": "实例的Id"
         }
     }

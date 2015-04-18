@@ -23,7 +23,7 @@ for url in api_urls:
 
     params = {}
     has_length_col = 'length' in doc('.docutils:first thead').text().lower()
-    for tr in doc('.docutils:first tbody tr'):
+    for i, tr in enumerate(doc('.docutils:first tbody tr')):
         tds = PyQuery(tr)('td')
         if has_length_col:
             del tds[2]
@@ -31,6 +31,7 @@ for url in api_urls:
             'Type': PyQuery(tds[1]).text().replace('\n', ' '),
             'Desc': PyQuery(tds[2]).text().replace('\n', ' '),
             'Required': PyQuery(tds[3]).text().replace('\n', ' ').lower() == 'yes',
+            'Order': i,
         }
 
     api_list[api.text()] = params
