@@ -1,5 +1,11 @@
 #!/usr/bin/env python -u
 # -*- coding: utf-8 -*-
+"""A simple command-line tool for calling UCloud API.
+
+It acts just like GNU tools, and has full support of completion
+which can be triggered by double enter 'Tab'.
+"""
+
 import sys
 import cmd
 import json
@@ -10,21 +16,22 @@ import os.path
 import urllib2
 import contextlib
 from functools import partial
-from prettytable import PrettyTable
 from ConfigParser import ConfigParser
 
+from prettytable import PrettyTable
 
-__author__ = 'Kang Li<i@likang.me>'
+
+__author__ = 'Kang Li<i@likang.me>, Jiali Yue<i@yuejiali.com>'
 __version__ = '0.1'
 
 
 class Terminal(cmd.Cmd):
-    """ UCloud line-oriented command interpreter """
+    """UCloud line-oriented command interpreter."""
 
     def __init__(self, completekey='tab', stdin=None, stdout=None):
         self.region = options.region
-        self.regions = ['cn-north-01', 'cn-north-02', 'cn-north-03', 'cn-east-01',
-                        'cn-south-01', 'hk-01', 'us-west-01']
+        self.regions = ['cn-north-01', 'cn-north-02', 'cn-north-03',
+                        'cn-east-01', 'cn-south-01', 'hk-01', 'us-west-01']
         self.doc = dict()
         self.load_doc()
 
@@ -33,8 +40,7 @@ class Terminal(cmd.Cmd):
         cmd.Cmd.__init__(self, completekey, stdin, stdout)
 
     def load_doc(self):
-        """ Load doc from doc.json and generate do_*() and complete_*()  """
-
+        """Load doc from doc.json and generate do_*() and complete_*()."""
         conf_file = os.path.join(os.path.dirname(__file__), 'doc.json')
 
         with open(conf_file) as d:
@@ -47,18 +53,18 @@ class Terminal(cmd.Cmd):
 
             # generate do_*()
             do_func = partial(self._do_action, action)
-            do_func.__doc__ = self._pretty_doc(action)
+            do_func.__doc__ = self._action_doc(action)
             setattr(Terminal, 'do_' + action, do_func)
 
-    def _pretty_doc(self, action):
-        """ Generate __doc__ for do_*()  """
+    def _action_doc(self, action):
+        """Generate __doc__ for do_*()."""
         doc_action = self.doc[action]
-        sort_func = lambda x, y: doc_action[x]['Order'] < doc_action[y]['Order']
+        cmp_func = lambda x, y: doc_action[x]['Order'] < doc_action[y]['Order']
 
-        doc_table = PrettyTable(['Parameter', 'Type', 'Required', 'Description'])
+        doc_table = PrettyTable(['Param', 'Type', 'Required', 'Description'])
         for field_name in doc_table.field_names:
             doc_table.align[field_name] = 'l'
-        for param in sorted(doc_action.keys(), cmp=sort_func):
+        for param in sorted(doc_action.keys(), cmp=cmp_func):
             params_info = doc_action[param]
             doc_table.add_row([param,
                                params_info['Type'],
@@ -67,8 +73,7 @@ class Terminal(cmd.Cmd):
         return doc_table.get_string().encode('utf-8')
 
     def do_region(self, region):
-        """  Set default region """
-
+        """Set default region."""
         if region not in self.regions:
             self.output('Invalid region: %s' % region)
             return
@@ -79,31 +84,58 @@ class Terminal(cmd.Cmd):
     def complete_region(self, *args):
         return [r for r in self.regions if r.startswith(args[0])]
 
-    def _complete_action(self, action, *args):
-        pass
+    def _complete_action(self, action, last_lex, line, *args):
+        """Real complete_* function for all actions."""
+        split_lex = shlex.split(line)
+
+        completes = []
+        if split_lex and '=' in split_lex[-1]:
+            # typing value
+            pass
+        else:
+            # typing param
+            all_params = self.doc[action].keys()
+            typed_params = self.typed_args(line)
+
+            completes = [p for p in all_params
+                         if p not in typed_params and p.startswith(last_lex)]
+
+        if len(completes) == 1 and completes[0] == last_lex:
+            return []
+
+        return completes
 
     def _do_action(self, action, line):
-        args = dict(self.split_args(line))
+        """Real do_* function for all actions."""
+
+        args = self.typed_args(line)
         if self.region and 'Region' in self.doc[action]:
             args['Region'] = self.region
 
         try:
             resp = UCloud(action)(**args)
-            self.output(json.dumps(resp, indent=4, ensure_ascii=False).encode('utf-8'))
+            self.output(json.dumps(resp, indent=4, ensure_ascii=False))
         except Exception as e:
-            self.output(str(e))
+            self.output(e)
 
     def postcmd(self, stop, line):
-        self.prompt = 'UCloud %s> ' % ((self.region + ' ') if self.region else '')
+        if self.region:
+            self.prompt = 'UCloud %s > ' % self.region
+        else:
+            self.prompt = 'UCloud > '
 
     def output(self, stuff):
+        if isinstance(stuff, unicode):
+            stuff = stuff.encode('utf-8')
+        elif not isinstance(stuff, basestring):
+            stuff = str(stuff)
         self.stdout.write(stuff + '\n')
 
     def emptyline(self):
         return None
 
     def welcome(self):
-        """ Print logo generated with font Sub-Zero """
+        """Print logo generated with font Sub-Zero."""
         self.output(r"""
  __  __     ______     __         ______     __  __     _____
 /\ \/\ \   /\  ___\   /\ \       /\  __ \   /\ \/\ \   /\  __-.
@@ -113,21 +145,20 @@ class Terminal(cmd.Cmd):
 """)
 
     def do_quit(self, _):
-        """ Quit when we got command quit/exit or Control-D """
+        """Quit when we got command quit/exit or Control-D."""
         self.output('')
         sys.exit(0)
 
     do_EOF = do_exit = do_quit
 
     @staticmethod
-    def split_args(line):
+    def typed_args(line):
         raw_args = [arg.split('=', 1) for arg in shlex.split(line)]
-        return [tuple(arg) for arg in raw_args if len(arg) == 2]
-
+        return dict([tuple(arg) for arg in raw_args if len(arg) == 2])
 
     @staticmethod
     def fix_auto_completion():
-        """ fix auto completion on macintosh """
+        """Fix auto completion on macintosh """
         import readline
         if 'libedit' in readline.__doc__:
             __import__('rlcompleter')
@@ -135,7 +166,7 @@ class Terminal(cmd.Cmd):
 
 
 class UCloud(object):
-    """ UCloud API Client """
+    """UCloud API Client."""
     def __init__(self, action):
         self.action = action
         self.params = dict(PublicKey=options.public_key, Action=action)
@@ -160,7 +191,7 @@ class UCloud(object):
 
 
 class Options(ConfigParser):
-    """ parse and save options """
+    """Parse and save options."""
     conf_path = os.path.expanduser('~/.ucloudrc')
 
     def __getattr__(self, item):
