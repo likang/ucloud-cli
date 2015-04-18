@@ -1,0 +1,113 @@
+{
+  "BuyUcdnTraffic": {
+    "Areacode": ["cn", "abroad"]
+  },
+  "CreateVServer": {
+    "PersistenceType": [ "None", "ServerInsert", "UserDefined" ],
+    "Protocol": [ "HTTP", "TCP", "UDP" ],
+    "Method": [ "Roundrobin", "Source" ]
+  },
+  "ReinstallUHostInstance": {
+    "ReserveDisk": ["Yes", "No"]
+  },
+  "UpdateUcdnDomain": {
+    "Areacodes.n": ["cn", "abroad"]
+  },
+  "CreateSSL": {
+    "SSLType": ["0"]
+  },
+  "CreateBucket": {
+    "Type": ["public", "private"]
+  },
+  "GetUcdnDomainBandwidth": {
+    "Daily": ["0", "1"],
+    "Areacode.n": ["cn", "abroad"]
+  },
+  "CreateUHostInstance": {
+    "LoginMode": ["Password", "KeyPair"],
+    "CPU": ["1", "2", "4", "8", "16"],
+    "Memory": ["2048", "4096", "8192", "16384", "32768", "65536"],
+    "ChargeType": ["Year", "Month", "Dynamic", "Trial"]
+  },
+  "UpdateUcdnDomainStatus": {
+    "Status": ["enable", "disable", "delete"]
+  },
+  "CreateUDBParamGroup": {
+    "DBTypeId": ["1", "2", "3", "4", "5", "6", "7"]
+  },
+  "DescribeImage": {
+    "ImageType": ["Base", "Business", "Custom"],
+    "OsType": ["Linux", "Windows"]
+  },
+  "DescribeUDBInstancePrice": {
+    "MemoryLimit": ["600", "1500", "3000", "6000", "15000", "30000"],
+    "ChargeType": ["Year", "Month", "Dynamic", "Trial"]
+  },
+  "DescribeUDBInstance": {
+    "ClassType": ["SQL", "NOSQL"]
+  },
+  "GetEIPPrice": {
+    "OperatorName": ["Telecom", "Unicom", "International", "BGP", "Duplet"],
+    "ChargeType": ["Year", "Month", "Dynamic"]
+  },
+  "ClearUDBLog": {
+    "LogType": ["10", "20", "30"]
+  },
+  "GetUHostInstancePrice": {
+    "Count": ["1", "2", "3", "4", "5"],
+    "ChargeType": ["Year", "Month", "Dynamic"],
+    "CPU": ["1", "2", "4", "8", "16"],
+    "Memory": ["2048", "4096", "8192", "16384", "32768", "65536"]
+  },
+  "CreateUcdnDomain": {
+    "Areacodes.n": ["cn", "abroad"],
+    "CdnType": ["web", "stream", "download", "Live"],
+    "LiveSrcType": ["rtmppush", "rtmppull", "hls"],
+    "ChargeType": ["traffic", "bandwidth", "trafficused"]
+  },
+  "BindEIP": {
+    "ResourceType": ["uhost", "vrouter", "ulb"]
+  },
+  "UnBindEIP": {
+    "ResourceType": ["uhost", "vrouter", "ulb"]
+  },
+  "DescribeRefreshCacheTask": {
+    "Status": ["success", "wait", "process", "failure", "unkonw"]
+  },
+  "DescribeUDBBackup": {
+    "BackupType": ["0", "1"]
+  },
+  "CreateUDBInstance": {
+    "DBTypeId": ["1", "2", "3", "4", "5", "6", "7"],
+    "MemoryLimit": ["600", "1500", "3000", "6000", "15000", "30000"],
+    "ChargeType": ["Year", "Month", "Dynamic"]
+  },
+  "UpdateVServerAttribute": {
+    "PersistenceType": ["None", "ServerInsert", "UserDefined"],
+    "Protocol": ["HTTP", "TCP", "UDP"],
+    "Method": ["Roundrobin", "Source"]
+  },
+  "UploadUDBParamGroup": {
+    "DBTypeId": ["1", "2", "3", "4", "5", "6", "7"]
+  },
+  "DescribePrefetchCacheTask": {
+    "Status": ["success", "wait", "process", "failure", "unkonw"]
+  },
+  "CreatePolicy": {
+    "Type": ["Domain"]
+  },
+  "ResizeUHostInstance": {
+    "CPU": ["1", "2", "4", "8", "16"],
+    "Memory": ["2048", "4096", "8192", "16384", "32768", "65536"]
+  },
+  "AllocateEIP": {
+    "OperatorName": ["Telecom", "Unicom", "International", "BGP", "Duplet"],
+    "ChargeType": ["Year", "Month", "Dynamic", "Trial"]
+  },
+  "UpdateBackendAttribute": {
+    "Enabled": ["1", "0"]
+  },
+  "AllocateBackend": {
+    "Enabled": ["1", "0"]
+  }
+}

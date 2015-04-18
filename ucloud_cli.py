@@ -41,10 +41,19 @@ class Terminal(cmd.Cmd):
 
     def load_doc(self):
         """Load doc from doc.json and generate do_*() and complete_*()."""
-        conf_file = os.path.join(os.path.dirname(__file__), 'doc.json')
+        doc_file = os.path.join(os.path.dirname(__file__), 'doc.json')
+        enum_file = os.path.join(os.path.dirname(__file__), 'enums.json')
 
-        with open(conf_file) as d:
-            self.doc = json.loads(d.read())
+        with open(doc_file) as f:
+            self.doc = json.loads(f.read())
+        with open(enum_file) as f:
+            enums = json.loads(f.read())
+            for action in enums:
+                for param in enums[action]:
+                    self.doc[action][param]['Enums'] = enums[action][param]
+            for action in self.doc:
+                if 'Region' in self.doc[action]:
+                    self.doc[action]['Region']['Enums'] = self.regions
 
         for action in self.doc:
             # generate complete_*()
@@ -72,39 +81,6 @@ class Terminal(cmd.Cmd):
                                params_info['Desc']])
         return doc_table.get_string().encode('utf-8')
 
-    def do_region(self, region):
-        """Set default region."""
-        if region not in self.regions:
-            self.output('Invalid region: %s' % region)
-            return
-
-        self.region = region
-        options.save(region=region)
-
-    def complete_region(self, *args):
-        return [r for r in self.regions if r.startswith(args[0])]
-
-    def _complete_action(self, action, last_lex, line, *args):
-        """Real complete_* function for all actions."""
-        split_lex = shlex.split(line)
-
-        completes = []
-        if split_lex and '=' in split_lex[-1]:
-            # typing value
-            pass
-        else:
-            # typing param
-            all_params = self.doc[action].keys()
-            typed_params = self.typed_args(line)
-
-            completes = [p for p in all_params
-                         if p not in typed_params and p.startswith(last_lex)]
-
-        if len(completes) == 1 and completes[0] == last_lex:
-            return []
-
-        return completes
-
     def _do_action(self, action, line):
         """Real do_* function for all actions."""
 
@@ -117,6 +93,51 @@ class Terminal(cmd.Cmd):
             self.output(json.dumps(resp, indent=4, ensure_ascii=False))
         except Exception as e:
             self.output(e)
+
+    def _complete_action(self, action, last_lex, line, *_):
+        """Real complete_* function for all actions."""
+        split_lex = shlex.split(line)
+
+        completes = []
+        if split_lex and '=' in split_lex[-1] and line[-1].strip():
+            # value auto completion
+            last_param = split_lex[-1].split('=', 1)[0]
+            if last_param in self.doc[action]:
+                param = self.doc[action][last_param]
+                if 'Enums' in param:
+                    completes = [p for p in param['Enums']
+                                 if p.startswith(last_lex)]
+        else:
+            # param auto completion
+            all_params = self.doc[action].keys()
+            typed_params = self.typed_args(line)
+
+            completes = [p for p in all_params
+                         if p not in typed_params and p.startswith(last_lex)]
+
+        if len(completes) == 1 and completes[0] == last_lex:
+            return []
+
+        return completes
+
+    def do_region(self, region):
+        """Set default region."""
+        if region not in self.regions:
+            self.output('Invalid region: %s' % region)
+            return
+
+        self.region = region
+        options.save(region=region)
+
+    def complete_region(self, *args):
+        return [r for r in self.regions if r.startswith(args[0])]
+
+    def do_quit(self, _):
+        """Quit when we got command quit/exit or Control-D."""
+        self.output('')
+        sys.exit(0)
+
+    do_EOF = do_exit = do_quit
 
     def postcmd(self, stop, line):
         if self.region:
@@ -143,13 +164,6 @@ class Terminal(cmd.Cmd):
  \ \_____\  \ \_____\  \ \_____\  \ \_____\  \ \_____\  \ \____-
   \/_____/   \/_____/   \/_____/   \/_____/   \/_____/   \/____/
 """)
-
-    def do_quit(self, _):
-        """Quit when we got command quit/exit or Control-D."""
-        self.output('')
-        sys.exit(0)
-
-    do_EOF = do_exit = do_quit
 
     @staticmethod
     def typed_args(line):
