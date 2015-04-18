@@ -1,14 +1,16 @@
 #!/usr/bin/env python -u
 # -*- coding: utf-8 -*-
-import json
 import sys
 import cmd
+import json
 import shlex
 import urllib
 import hashlib
 import os.path
 import urllib2
 import contextlib
+from functools import partial
+from prettytable import PrettyTable
 from ConfigParser import ConfigParser
 
 
@@ -18,44 +20,84 @@ __version__ = '0.1'
 
 class Terminal(cmd.Cmd):
     """ UCloud line-oriented command interpreter """
-    doc_path = os.path.join(os.path.dirname(__file__), 'doc.json')
 
     def __init__(self, completekey='tab', stdin=None, stdout=None):
-        self.prompt = 'UCloud > '
-        self.region = None
+        self.region = options.region
+        self.regions = ['cn-north-01', 'cn-north-02', 'cn-north-03', 'cn-east-01',
+                        'cn-south-01', 'hk-01', 'us-west-01']
+        self.doc = dict()
+        self.load_doc()
+
+        self.postcmd(0, 0)
         self.fix_auto_completion()
-
-        with open(self.doc_path) as d:
-            self.doc = json.loads(d.read())
-
         cmd.Cmd.__init__(self, completekey, stdin, stdout)
 
-    def gen_action(self, action):
-        """ Generate do_xx(command) dynamically  """
-        def do_action(line):
-            args = dict(self.split_args(line))
-            if self.region and 'Region' in self.doc[action]:
-                args['Region'] = self.region
+    def load_doc(self):
+        """ Load doc from doc.json and generate do_*() and complete_*()  """
 
-            ucloud = UCloud(action)
-            try:
-                resp = ucloud(**args)
-                self.output(json.dumps(resp, indent=4, ensure_ascii=False))
-            except Exception as e:
-                self.output(str(e))
-        return do_action
+        conf_file = os.path.join(os.path.dirname(__file__), 'doc.json')
 
-    def do_help(self, arg):
+        with open(conf_file) as d:
+            self.doc = json.loads(d.read())
+
+        for action in self.doc:
+            # generate complete_*()
+            complete_func = partial(self._complete_action, action)
+            setattr(Terminal, 'complete_' + action, complete_func)
+
+            # generate do_*()
+            do_func = partial(self._do_action, action)
+            do_func.__doc__ = self._pretty_doc(action)
+            setattr(Terminal, 'do_' + action, do_func)
+
+    def _pretty_doc(self, action):
+        """ Generate __doc__ for do_*()  """
+        doc_action = self.doc[action]
+        sort_func = lambda x, y: doc_action[x]['Order'] < doc_action[y]['Order']
+
+        doc_table = PrettyTable(['Parameter', 'Type', 'Required', 'Description'])
+        for field_name in doc_table.field_names:
+            doc_table.align[field_name] = 'l'
+        for param in sorted(doc_action.keys(), cmp=sort_func):
+            params_info = doc_action[param]
+            doc_table.add_row([param,
+                               params_info['Type'],
+                               ('No', 'Yes')[int(params_info['Required'])],
+                               params_info['Desc']])
+        return doc_table.get_string().encode('utf-8')
+
+    def do_region(self, region):
+        """  Set default region """
+
+        if region not in self.regions:
+            self.output('Invalid region: %s' % region)
+            return
+
+        self.region = region
+        options.save(region=region)
+
+    def complete_region(self, *args):
+        return [r for r in self.regions if r.startswith(args[0])]
+
+    def _complete_action(self, action, *args):
         pass
+
+    def _do_action(self, action, line):
+        args = dict(self.split_args(line))
+        if self.region and 'Region' in self.doc[action]:
+            args['Region'] = self.region
+
+        try:
+            resp = UCloud(action)(**args)
+            self.output(json.dumps(resp, indent=4, ensure_ascii=False).encode('utf-8'))
+        except Exception as e:
+            self.output(str(e))
+
+    def postcmd(self, stop, line):
+        self.prompt = 'UCloud %s> ' % ((self.region + ' ') if self.region else '')
 
     def output(self, stuff):
         self.stdout.write(stuff + '\n')
-
-    def completenames(self, text, *ignored):
-        """ All command names  """
-        do_text = 'do_'+text
-        names = [a[3:] for a in self.get_names() if a.startswith(do_text)]
-        return names + [a for a in self.doc.keys() if a.startswith(text)]
 
     def emptyline(self):
         return None
@@ -76,15 +118,6 @@ class Terminal(cmd.Cmd):
         sys.exit(0)
 
     do_EOF = do_exit = do_quit
-
-    def __getattr__(self, item):
-        """ Inject do_xxx action into Terminal """
-        if item.startswith('do_'):
-            action = item[3:]
-            if action in self.doc:
-                setattr(self, item, self.gen_action(action))
-                return getattr(self, item)
-        raise AttributeError("'Terminal' object has no attribute '%s'" % item)
 
     @staticmethod
     def split_args(line):
@@ -132,6 +165,13 @@ class Options(ConfigParser):
 
     def __getattr__(self, item):
         return self.get('ucloud', item)
+
+    def save(self, **kwargs):
+        for key, value in kwargs.items():
+            self.set('ucloud', key, value)
+
+        with open(self.conf_path, 'wb') as f:
+            self.write(f)
 
     def load(self):
         if not os.path.exists(self.conf_path):
