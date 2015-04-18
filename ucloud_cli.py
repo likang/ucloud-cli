@@ -207,13 +207,17 @@ class UCloud(object):
 class Options(ConfigParser):
     """Parse and save options."""
     conf_path = os.path.expanduser('~/.ucloudrc')
+    default_section = 'ucloud'
+    default_value = ''
 
     def __getattr__(self, item):
-        return self.get('ucloud', item)
+        if self.has_option(self.default_section, item):
+            return self.get(self.default_section, item)
+        return self.default_value
 
     def save(self, **kwargs):
         for key, value in kwargs.items():
-            self.set('ucloud', key, value)
+            self.set(self.default_section, key, value)
 
         with open(self.conf_path, 'wb') as f:
             self.write(f)
@@ -247,11 +251,14 @@ def main():
     options.load()
 
     terminal = Terminal()
-    try:
-        terminal.welcome()
-        terminal.cmdloop()
-    except KeyboardInterrupt:
-        print('')
+    if len(sys.argv) >= 2:
+        terminal.onecmd(' '.join(sys.argv[1:]))
+    else:
+        try:
+            terminal.welcome()
+            terminal.cmdloop()
+        except KeyboardInterrupt:
+            print('')
 
 
 if __name__ == '__main__':
